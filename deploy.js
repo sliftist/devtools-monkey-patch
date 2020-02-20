@@ -17,6 +17,11 @@ const brotli = require("brotli");
 const resourcesArrayIndicator = "har_importer/";
 const aliasTableId = Symbol("aliasTableId");
 
+//todonext;
+// - In our devtools-frontend repo, create a few branches, such as that change the background, and... one that applies our wasmtools code.
+//      - Once we get both working, push both to a fork, push THIS to a fork, publish to npm, take screenshots, document, and make it a page on our site.
+
+
 
 
 const syncDelay = 100;
@@ -27,6 +32,7 @@ const info = chalk.hsl(200, 100, 75);
 const warn = chalk.hsl(60, 100, 55);
 const success = chalk.hsl(100, 100, 55);
 const error = chalk.hsl(0, 100, 55);
+
 
 
 /** @type {{ noAdminPrompt: boolean; optionsPath: string; resourcePaths: string[]; buildApplications: string[]; dryRun: boolean; devtoolsRepo: string; syncRepo: boolean; }} */
@@ -74,6 +80,40 @@ if(argObj.syncRepo) {
 const outputDirectory = argObj.devtoolsRepo + "/release/";
 const inputDirectory = argObj.devtoolsRepo + "/front_end/";
 
+/*
+let dlls = [
+    "C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4062.1/chrome.dll",
+    "C:/Program Files (x86)/Google/Chrome/Application/79.0.3945.130/chrome.dll"
+];
+console.log();
+for(let dll of dlls) {
+    console.log(dll);
+    let idLookup = parseStringLookupAround(fs.readFileSync(dll), resourcesArrayIndicator);
+    let pakPath = dll.replace(/\\/g, "/").split("/").slice(0, -1).join("/") + "/" + "resources.pak";
+    console.log(pakPath);
+    let pakFile = fs.readFileSync(pakPath);
+    let pak = parseResourcePak(pakFile);
+
+    let lookup = Object.create(null);
+
+    for(let name in idLookup) {
+        let id = idLookup[name];
+        let buffer = pak[id];
+        if(!buffer) {
+            //console.warn(`No id pak for id ${id}, ${name}`);
+            continue;
+        }
+        lookup[name] = buffer;
+    }
+
+    console.log(Object.keys(lookup).filter(x => x.includes("sources")).slice(0, 10));
+
+    console.log(decompressIfNeeded(lookup["shell.js"]).toString("ascii").length);
+
+    console.log();
+}
+*/
+//parseStringLookupAround(fs.readFileSync("C:/Program Files (x86)/Google/Chrome/Application/79.0.3945.130/chrome.dll"), resourcesArrayIndicator);
 
 startWatch(getExePaths());
 
@@ -92,12 +132,170 @@ function readNullTerminatedString(
 /** @return {{ [fileName: string]: number }} */
 function parseStringLookupAround(
     /** @type {Buffer} */ buffer,
-    /** @type {number} */ posInString
+    /** @type {number} */ text
 ) {
-    let pos = posInString;
+    let pos = buffer.toString("ascii").indexOf(text);
+
+    // There are many c strings, followed by...
+    //  Some kind of array, of something like addresses and indexes. The first address and index seem mostly random,
+    //  but the offsets make sense (the indexes increase by 1, the addresses start at the start of strings).
+    // ALSO! There is NULL padding after the end of the c strings, making the table aligned.
+    //  The table might be 16 bytes per entry, or 8 bytes per entry, and is aligned to the size of the entries.
+
+    // Therefore, if we start in the middle of the c strings, we can keep looking until we find incrementing entry indexes,
+    //  at which point we are likely in the entry table.
+    // Then we can parse the entire entry table.
+    // Before the entry table will be NULLs, and then the end of the last c string (hopefully the last C string doesn't have NULLs in the
+    //  string itself, which may be possible if they aren't actually c strings...).
+    // We can find the size of the string lookup with the difference in the first and last addresses in the entry table.
+    // From the size we can find the start of the c string table.
+    // Then by inferring the distance between addresses, and using the end of the last c string, we can find the sizes
+    //  and contents of all the c strings.
+
+
+    // TODO: We make a lot of assumptions that ids will be in order, and increasing. Instead, we should somehow use the differences in addresses to
+    //  line up with the string positionings. This would be a lot more complicated (there are multiple possible c string table starts) but
+    //  a lot more robust (as there is no reason the ids to be offset from indexes, except for the fact that they are generated and happen to always be in order
+    //  and sequential)
+
+    let offsetCount = 0;
+
+    //todonext;
+    // Use generators
+
+    function parseEntry(pos, intSize) {
+        if(pos + intSize * 2 > buffer.length) return null;
+        return {
+            address: buffer.readUInt32LE(pos),
+            id: buffer.readUInt32LE(pos + intSize),
+        }
+    }
+
+    function* createEntryTester(intSize) {
+        let curPos = pos - pos % (intSize * 2);
+        let lastIndex = 0;
+        let consecutiveIndexes = 0;
+        while(true) {
+            let entry = parseEntry(curPos, intSize);
+            if(!entry) break;
+            
+            let index = entry.id;
+            if(index - lastIndex === 1) {
+                consecutiveIndexes++;
+
+                if(consecutiveIndexes >= 10) {
+                    yield curPos;
+                }
+            } else {
+                consecutiveIndexes = 0;
+            }
+            lastIndex = index;
+
+            curPos += intSize * 2;
+            yield 0;
+        }
+    }
+
+    function getIntSize() {
+        let generators = [4, 8].map(intSize => {
+            return {
+                intSize,
+                generator: createEntryTester(intSize),
+            };
+        });
+
+        while(true) {
+            let tested = false;
+            
+            for(let { intSize, generator } of generators) {
+                let val = generator.next();
+                if(!val.done) {
+                    tested = true;
+                    if(val.value !== 0) {
+                        pos = val.value;
+                        return intSize;
+                    }
+                }
+            }
+    
+            if(!tested) {
+                throw new Error(`Cannot find entry table for lookup.`);
+            }
+        }
+    }
+    
+    let intSize = getIntSize();
+    console.log({intSize});
+    
+    // Go to the start of the entry table
+    while(true) {
+        if(parseEntry(pos - intSize * 2, intSize).id + 1 !== parseEntry(pos, intSize).id) {
+            break;
+        }
+        pos -= intSize * 2;
+    }
+
+    let startOfEntryTable = pos;
+
+    // Skip any extra alignment NULL characters to find the end of the last string
+    while(buffer[pos - 1] === 0) pos--;
+    pos++;
+
+    
+    let endOfLastString = pos;
+    pos -= 2;
+    while(buffer[pos] !== 0) pos--;
+    pos++;
+    let startOfLastString = pos;
+
+    console.log({endOfLastString: endOfLastString.toString(16)});
+
+    // Parse the entry table
+    let entryTable = [];
+    pos = startOfEntryTable;
+    while(true) {
+        let entry = parseEntry(pos, intSize);
+        if(!entry) break;
+        if(entryTable.length > 0 && entry.id !== entryTable[entryTable.length - 1].id + 1) break;
+        entryTable.push(entry);
+        pos += intSize * 2;
+    }
+
+    console.log("entryTable.length", entryTable.length);
+
+    // We now the distance between the starts of the first and last string (the difference in addreses, so we can find the start of the strings)
+    let startOfFirstString = startOfLastString - (entryTable.slice(-1)[0].address - entryTable[0].address);
+
+    console.log({startOfFirstString: startOfFirstString.toString(16)});
+
+
+    let idLookup = Object.create(null);
+
+    let addressOffet = startOfFirstString - entryTable[0].address;
+
+    for(let entry of entryTable) {
+        let pos = entry.address + addressOffet;
+        let str = "";
+        while(buffer[pos] !== 0) {
+            str += String.fromCharCode(buffer[pos]);
+            pos++;
+        }
+        idLookup[str] = entry.id;
+    }
+
+    return idLookup;
+
+    
+
+    /*
     while(!(buffer[pos - 1] === 0 && buffer[pos - 2] === 0)) pos--;
 
     let textStart = pos;
+
+    //todonext;
+    // Well... fuck! The binary format is massively changed.
+    // Ugh... okay... we could look for SOME repeating pattern of increasing values, at either 8 or 16 byte offsets, of width 4... and then...
+    //  from that we can find the end of the string table, and then we can look backwards... and that will probably work... for both cases...
 
     let textValues = [];
     while(buffer[pos] !== 0) {
@@ -109,6 +307,8 @@ function parseStringLookupAround(
         }
         textValues.push(text);
     }
+
+    console.log(textValues.slice(0, 10));
     
     while(buffer[pos] === 0) pos++;
 
@@ -124,7 +324,9 @@ function parseStringLookupAround(
         pos += 4 * 4;
     }
 
-    /** @type {{ [fileName: string]: number }} */
+    console.log(pos.toString(16));
+
+    
     let textLookup = Object.create(null);
 
     let bytePosOffset = bytePositions[0];
@@ -132,8 +334,9 @@ function parseStringLookupAround(
         let textValue = readNullTerminatedString(buffer, bytePositions[i] - bytePosOffset + textStart);
         textLookup[textValue.toLowerCase()] = ids[i];
     }
+    */
 
-    return textLookup;
+    //return textLookup;
 }
 
 
@@ -252,7 +455,7 @@ function decompressIfNeeded(
 
 function build() {
     for(let buildApplication of argObj.buildApplications) {
-        let buildCommand = `py ${inputDirectory}/../scripts/build/build_release_applications.py ${buildApplication} --input_path ${inputDirectory} --output_path ${inputDirectory}/../${outputDirectory}`;
+        let buildCommand = `py ${inputDirectory}/../scripts/build/build_release_applications.py ${buildApplication} --input_path ${inputDirectory} --output_path ${outputDirectory}`;
         child_process.execSync(buildCommand);
     }
 }
@@ -458,9 +661,9 @@ function startWatch(
 
     for(let dir of dirs) {
         fs.watch(`${inputDirectory}/${dir}`, { recursive: true }, (eventType, filename) => {
-            if(filename === "_patch" || filename.endsWith(".mutated")) return;
+            if(filename === "_patch" || filename.endsWith(".mutated.tmp")) return;
             if(!argObj.dryRun) {
-                fs.writeFileSync(`${inputDirectory}/${dir}/${filename}.mutated`, "");
+                fs.writeFileSync(`${inputDirectory}/${dir}/${filename}.mutated.tmp`, "");
             }
             trigger(filename);
         });
@@ -569,9 +772,10 @@ function startWatch(
         let libraryFilePath = resourcePakFile.split("/").slice(0, -1).join("/") + "/chrome.dll";
         let libraryFile = fs.readFileSync(libraryFilePath);
 
+
         let idLookup = parseStringLookupAround(
             libraryFile,
-            libraryFile.toString("ascii").indexOf(resourcesArrayIndicator)
+            resourcesArrayIndicator
         );
 
         let resourcePak = fs.readFileSync(resourcePakFile);
@@ -585,8 +789,10 @@ function startWatch(
         for(let moduleFileName in moduleFiles) {
             let files = moduleFiles[moduleFileName];
             for(let filePath in files) {
-                if(fs.existsSync(filePath + ".mutated")) {
-                    let id = idLookup[moduleFileName.slice(outputDirectory.length).toLowerCase()];
+                if(fs.existsSync(filePath + ".mutated.tmp")) {
+                    let fileName = moduleFileName.slice(outputDirectory.length).toLowerCase();
+                    let id = idLookup[fileName];
+
                     let oldBuffer = decompressIfNeeded(resourceLookup[id]);
                     let newBuffer = fs.readFileSync(moduleFileName);
 
