@@ -18,7 +18,7 @@ const resourcesArrayIndicator = "har_importer/";
 const aliasTableId = Symbol("aliasTableId");
 
 //todonext;
-// - In our devtools-frontend repo, create a few branches, such as that change the background, and... one that applies our wasmtools code.
+// - Get our wasm-tools code from the old repo to the new repo.
 //      - Once we get both working, push both to a fork, push THIS to a fork, publish to npm, take screenshots, document, and make it a page on our site.
 
 
@@ -34,6 +34,7 @@ const success = chalk.hsl(100, 100, 55);
 const error = chalk.hsl(0, 100, 55);
 
 
+// yarn start -c "C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/chrome.exe" --remoteRepoUrl git@github.com:sliftist/devtools-frontend.git
 
 /** @type {{ noAdminPrompt: boolean; optionsPath: string; resourcePaths: string[]; buildApplications: string[]; dryRun: boolean; devtoolsRepo: string; syncRepo: boolean; }} */
 let argObj = yargs.command("")
@@ -796,7 +797,7 @@ function startWatch(
                     let oldBuffer = decompressIfNeeded(resourceLookup[id]);
                     let newBuffer = fs.readFileSync(moduleFileName);
 
-                    console.log(info(`Changed ${moduleFileName} due to ${filePath} change. Length change from ${oldBuffer.length} to ${newBuffer.length}`));
+                    console.log(info(`Changed ${moduleFileName} due to ${filePath + ".mutated.tmp"} existence. Length change from ${oldBuffer.length} to ${newBuffer.length}`));
                     noFilesChanged = false;
 
                     resourceLookup[id] = newBuffer;
