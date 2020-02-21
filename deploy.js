@@ -10,18 +10,13 @@ const brotli = require("brotli");
 
 // C:\chromium\src\out\release\gen\content\browser\devtools\grit\devtools_resources_map.cc
 // devtools://devtools/bundled/inspector_main/InspectorMain.js
+// git checkout 39944955e0b5b571c2744b159af3244445215a7d~425 no visible errors
 
 // Any part of any filename that should only be found in the chrome.dll exactly once, and should be found in the static array of
 //  resource file names.
 // C:\chromium\src\out\debug\gen\content\browser\devtools\grit\devtools_resources_map.cc
 const resourcesArrayIndicator = "har_importer/";
 const aliasTableId = Symbol("aliasTableId");
-
-//todonext;
-// - Get our wasm-tools code from the old repo to the new repo.
-//      - Once we get both working, push both to a fork, push THIS to a fork, publish to npm, take screenshots, document, and make it a page on our site.
-
-
 
 
 const syncDelay = 100;
@@ -45,6 +40,7 @@ let argObj = yargs.command("")
     .option("optionsPath", { description: "Argument for internal use only." })
     .option("closeOnWritable", { description: "Closes when the specified file at the specified path becomes writable. Used internally." })
     .option("skipFirstBuild", { })
+    .option("onlyFirstChange", { alias: "q" })
     .option("dryRun", { alias: "d", description: "Don't write any files to the disk." })
     .option("devtoolsRepo", { description: "Path to repo contains devtools-frontend", default: "./devtools-frontend" })
     .option("syncRepo", { description: "If there isn't .git file at the folder given by devtoolsRepo, syncs a git repo in that folder", default: true, type: "boolean" })
@@ -281,63 +277,10 @@ function parseStringLookupAround(
             str += String.fromCharCode(buffer[pos]);
             pos++;
         }
-        idLookup[str] = entry.id;
+        idLookup[str.toLowerCase()] = entry.id;
     }
 
     return idLookup;
-
-    
-
-    /*
-    while(!(buffer[pos - 1] === 0 && buffer[pos - 2] === 0)) pos--;
-
-    let textStart = pos;
-
-    //todonext;
-    // Well... fuck! The binary format is massively changed.
-    // Ugh... okay... we could look for SOME repeating pattern of increasing values, at either 8 or 16 byte offsets, of width 4... and then...
-    //  from that we can find the end of the string table, and then we can look backwards... and that will probably work... for both cases...
-
-    let textValues = [];
-    while(buffer[pos] !== 0) {
-        let text = "";
-        while(true) {
-            let ch = String.fromCharCode(buffer[pos++]);
-            if(ch === '\0') break;
-            text += ch;
-        }
-        textValues.push(text);
-    }
-
-    console.log(textValues.slice(0, 10));
-    
-    while(buffer[pos] === 0) pos++;
-
-    let ids = [];
-    let bytePositions = [];
-    while(true) {
-        let strBytePosition = buffer.readUInt32LE(pos);
-        let flag = buffer.readUInt32LE(pos + 4);
-        if(flag !== 1) break;
-        let id = buffer.readUInt32LE(pos + 8);
-        ids.push(id);
-        bytePositions.push(strBytePosition);
-        pos += 4 * 4;
-    }
-
-    console.log(pos.toString(16));
-
-    
-    let textLookup = Object.create(null);
-
-    let bytePosOffset = bytePositions[0];
-    for(let i = 0; i < bytePositions.length; i++) {
-        let textValue = readNullTerminatedString(buffer, bytePositions[i] - bytePosOffset + textStart);
-        textLookup[textValue.toLowerCase()] = ids[i];
-    }
-    */
-
-    //return textLookup;
 }
 
 
@@ -457,6 +400,7 @@ function decompressIfNeeded(
 function build() {
     for(let buildApplication of argObj.buildApplications) {
         let buildCommand = `py ${inputDirectory}/../scripts/build/build_release_applications.py ${buildApplication} --input_path ${inputDirectory} --output_path ${outputDirectory}`;
+        console.log(message(buildCommand));
         child_process.execSync(buildCommand);
     }
 }
@@ -466,7 +410,8 @@ function build() {
 /** @return {{ [moduleFileName: string]: { [sourceFileName: string]: true }}} */
 function getModuleFiles() {
     function getModuleFilePaths(moduleName) {
-        let jsonContents = JSON.parse(fs.readFileSync(inputDirectory + moduleName + "/module.json"));
+        let moduleFilePath = inputDirectory + moduleName + "/module.json";
+        let jsonContents = JSON.parse(fs.readFileSync(moduleFilePath));
 
         let files = (
             (jsonContents.modules || [])
@@ -485,14 +430,21 @@ function getModuleFiles() {
     for(let rootJsonFileName of jsonFiles) {
         let jsonContents = JSON.parse(fs.readFileSync(inputDirectory + rootJsonFileName));
 
+        let rootModuleName = rootJsonFileName.slice(0, -5) + ".js";
+        let rootFilePath = outputDirectory + rootModuleName;
+        moduleFiles[rootFilePath] = moduleFiles[rootFilePath] || Object.create(null);
+
         for(let moduleObj of jsonContents.modules) {
             //if(moduleObj.type === "remote") continue;
+
+            // All module.json files can impact the root bundle (due to extensions?)
+            moduleFiles[rootFilePath][inputDirectory + moduleObj.name + "/module.json"] = true;
 
             let files = getModuleFilePaths(moduleObj.name);
 
             let moduleFileName = (
                 moduleObj.type === "autostart"
-                ? rootJsonFileName.slice(0, -5) + ".js"
+                ? rootModuleName
                 : moduleObj.name + "/" + moduleObj.name + "_module.js"
             );
             moduleFileName = outputDirectory + moduleFileName;
@@ -532,11 +484,11 @@ function getExePaths() {
         return argObj.chromePaths;
     }
     if(process.platform === "win32") {
-        // Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\Google Chrome\shell\open\command
+        // Possible other registry locations to search:
+        //  Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\Google Chrome\shell\open\command
+        //  HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FeatureUsage\AppLaunch
+        //  Computer\HKEY_CURRENT_USER\Software
 
-        // HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FeatureUsage\AppLaunch
-        // Computer\HKEY_CURRENT_USER\Software
-        // Ugh... wtf, my MuiCache has been cleared? Did I clear it? Let's search other paths then...
         let executables = JSON.parse(child_process.execSync(`powershell "Get-Item -path 'HKCU:/Software/Classes/Local Settings/Software/Microsoft/Windows/Shell/MuiCache' | Select-Object -ExpandProperty Property | ConvertTo-Json"`).toString("utf8"));
         executables = executables.filter(x => x.endsWith("chrome.exe.FriendlyAppName"));
         executables = executables.map(x => x.slice(0, -".FriendlyAppName".length));
@@ -655,16 +607,20 @@ function startWatch(
     dirs.push("main");
 
     if(!argObj.skipFirstBuild) {
-        runTimed(build);
+        try {
+            runTimed(build);
+        } catch(e) {
+            console.error(error(e.stack));
+            console.error(error(`\nFIRST BUILD FAILED`));
+        }
     }
-
     triggerInner();
 
     for(let dir of dirs) {
         fs.watch(`${inputDirectory}/${dir}`, { recursive: true }, (eventType, filename) => {
-            if(filename === "_patch" || filename.endsWith(".mutated.tmp")) return;
+            if(filename === "_patch" || filename.endsWith(".mutated")) return;
             if(!argObj.dryRun) {
-                fs.writeFileSync(`${inputDirectory}/${dir}/${filename}.mutated.tmp`, "");
+                fs.writeFileSync(`${inputDirectory}/${dir}/${filename}.mutated`, "");
             }
             trigger(filename);
         });
@@ -742,7 +698,7 @@ function startWatch(
                     // TODO: We can check who is locking the file... at least on windows (with handle.exe). So we should probably at least tell
                     //  the user which process is locking it.
                     if(!(resourcePakFile in pendingLockedPakChanges)) {
-                        console.error(warn(`Error when writing to resources.pak. Assuming the file is locked by a running version of chrome. Will periodically check the file and apply the changes when it is writable.`));
+                        console.error(warn(`Error when writing to resources.pak. Assuming the file is locked by a running version of chrome. A periodically check of the file will run in the background and apply the changes when it is writable.`));
                         group();
                         console.error(warn(`Error: ${e.message}`));
                         groupEnd();
@@ -762,6 +718,10 @@ function startWatch(
                     } else {
                         console.error(warn(`Still erroring when writing to resources.pak.`));
                     }
+                }
+
+                if(argObj.onlyFirstChange) {
+                    process.exit();
                 }
             });
             groupEnd();
@@ -787,25 +747,60 @@ function startWatch(
         
         let moduleFiles = getModuleFiles();
 
+        let totalInDll = 0;
+        let totalFilesFoundOnDisk = 0;
         for(let moduleFileName in moduleFiles) {
             let files = moduleFiles[moduleFileName];
-            for(let filePath in files) {
-                if(fs.existsSync(filePath + ".mutated.tmp")) {
-                    let fileName = moduleFileName.slice(outputDirectory.length).toLowerCase();
-                    let id = idLookup[fileName];
-
-                    let oldBuffer = decompressIfNeeded(resourceLookup[id]);
-                    let newBuffer = fs.readFileSync(moduleFileName);
-
-                    console.log(info(`Changed ${moduleFileName} due to ${filePath + ".mutated.tmp"} existence. Length change from ${oldBuffer.length} to ${newBuffer.length}`));
-                    noFilesChanged = false;
-
-                    resourceLookup[id] = newBuffer;
-
-                    break;
+            for(let fileName in files) {
+                totalInDll++;
+                if(fs.existsSync(fileName)) {
+                    totalFilesFoundOnDisk++;
                 }
             }
         }
+
+        let matchFactor = totalFilesFoundOnDisk / totalInDll;
+
+        console.log(info(`${totalFilesFoundOnDisk} / ${totalInDll} (${(matchFactor * 100).toFixed(1)}%) files from dll matched in repo.`));
+
+
+
+        function changeId(id, newBuffer) {
+            let oldBufferBase = resourceLookup[id];
+            let oldBuffer = decompressIfNeeded(oldBufferBase);
+
+            resourceLookup[id] = newBuffer;
+            console.log(info(`    Length change from ${oldBuffer.length} (${oldBuffer.length}) to ${newBuffer.length}`));
+        }
+
+        for(let moduleFileName in moduleFiles) {
+            let files = moduleFiles[moduleFileName];
+
+            let filePaths = Object.keys(files).filter(filePath => fs.existsSync(filePath + ".mutated"));
+
+            if(filePaths.length > 0) {
+                noFilesChanged = false;
+
+                let fileName = moduleFileName.slice(outputDirectory.length).toLowerCase();
+                let id = idLookup[fileName];
+
+                let newBuffer = fs.readFileSync(moduleFileName);
+
+                console.log(info(`Changed ${moduleFileName} due to \n${filePaths.map(x => "    " + "    " + x + ".mutated").join("\n")}`));
+                changeId(id, newBuffer);
+
+                for(let filePath of filePaths) {
+                    let rawPath = filePath.slice(inputDirectory.length).toLowerCase();
+                    if(rawPath in idLookup) {
+                        console.log(info(`Changed raw file ${filePath}`));
+                        let id = idLookup[rawPath];
+                        changeId(id, fs.readFileSync(filePath));
+                    }
+                }
+            }
+        }
+
+        //console.log(Object.keys(moduleFiles['./devtools-frontend/release/shell.js']).filter(x => x.includes(".json")));
 
         let newResourcePak = generateResourcePak(resourceLookup);
 
