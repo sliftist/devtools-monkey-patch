@@ -1,0 +1,675 @@
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py shell --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py devtools_app --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+build finished in 4786ms
+
+Parsing file (1/2) C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '691acb6' }
+    entryTable.length 860
+    { startOfFirstString: '6914d48' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/shell.js due to 
+            ./devtools-frontend/front_end/sdk/DebuggerModel.js.mutated
+            ./devtools-frontend/front_end/sdk/RuntimeModel.js.mutated
+            ./devtools-frontend/front_end/sources/module.json.mutated
+        Length change from 168247 (168247) to 196960
+    Changed raw file ./devtools-frontend/front_end/sdk/DebuggerModel.js
+        Length change from 29542 (29542) to 49445
+    Changed raw file ./devtools-frontend/front_end/sdk/RuntimeModel.js
+        Length change from 14933 (14933) to 87029
+    Changed ./devtools-frontend/release/sources/sources_module.js due to 
+            ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js.mutated
+            ./devtools-frontend/front_end/sources/SourcesPanel.js.mutated
+        Length change from 23810 (23810) to 327969
+    Changed raw file ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js
+        Length change from 4769 (4769) to 35113
+    Changed raw file ./devtools-frontend/front_end/sources/SourcesPanel.js
+        Length change from 29680 (29680) to 46435
+    Updated file C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    Parse finished in 834ms
+
+Parsing file (2/2) C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '650409b' }
+    entryTable.length 590
+    { startOfFirstString: '6500228' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/shell.js due to 
+            ./devtools-frontend/front_end/sdk/DebuggerModel.js.mutated
+            ./devtools-frontend/front_end/sdk/RuntimeModel.js.mutated
+            ./devtools-frontend/front_end/sources/module.json.mutated
+        Length change from 195504 (195504) to 196960
+    Changed raw file ./devtools-frontend/front_end/sdk/DebuggerModel.js
+        Length change from 28693 (28693) to 49445
+    Changed raw file ./devtools-frontend/front_end/sdk/RuntimeModel.js
+        Length change from 14539 (14539) to 87029
+    Changed ./devtools-frontend/release/sources/sources_module.js due to 
+            ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js.mutated
+            ./devtools-frontend/front_end/sources/SourcesPanel.js.mutated
+        Length change from 308153 (308153) to 327969
+    Updated file C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    Parse finished in 287ms
+
+
+Triggering rebuild because of changes in lighthouse
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py shell --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py devtools_app --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+build finished in 814ms
+Parsing file (1/2) C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '691acb6' }
+    entryTable.length 860
+    { startOfFirstString: '6914d48' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/shell.js due to 
+            ./devtools-frontend/front_end/sdk/DebuggerModel.js.mutated
+            ./devtools-frontend/front_end/sdk/RuntimeModel.js.mutated
+            ./devtools-frontend/front_end/sources/module.json.mutated
+        Length change from 168247 (168247) to 196960
+    Changed raw file ./devtools-frontend/front_end/sdk/DebuggerModel.js
+        Length change from 29542 (29542) to 49445
+    Changed raw file ./devtools-frontend/front_end/sdk/RuntimeModel.js
+        Length change from 14933 (14933) to 87029
+    Changed ./devtools-frontend/release/sources/sources_module.js due to 
+            ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js.mutated
+            ./devtools-frontend/front_end/sources/SourcesPanel.js.mutated
+        Length change from 23810 (23810) to 327969
+    Changed raw file ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js
+        Length change from 4769 (4769) to 35113
+    Changed raw file ./devtools-frontend/front_end/sources/SourcesPanel.js
+        Length change from 29680 (29680) to 46435
+    Updated file C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    Parse finished in 755ms
+
+Parsing file (2/2) C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '650409b' }
+    entryTable.length 590
+    { startOfFirstString: '6500228' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/shell.js due to 
+            ./devtools-frontend/front_end/sdk/DebuggerModel.js.mutated
+            ./devtools-frontend/front_end/sdk/RuntimeModel.js.mutated
+            ./devtools-frontend/front_end/sources/module.json.mutated
+        Length change from 195504 (195504) to 196960
+    Changed raw file ./devtools-frontend/front_end/sdk/DebuggerModel.js
+        Length change from 28693 (28693) to 49445
+    Changed raw file ./devtools-frontend/front_end/sdk/RuntimeModel.js
+        Length change from 14539 (14539) to 87029
+    Changed ./devtools-frontend/release/sources/sources_module.js due to 
+            ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js.mutated
+            ./devtools-frontend/front_end/sources/SourcesPanel.js.mutated
+        Length change from 308153 (308153) to 327969
+    Error when writing to resources.pak. Assuming the file is locked by a running version of chrome. A periodically check of the file will run in the background and apply the changes when it is writable.
+        Error: EPERM: operation not permitted, rename 'C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak.temp' -> 'C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak'
+    Parse finished in 410ms
+
+
+Triggering rebuild because of changes in lighthouse
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py shell --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py devtools_app --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+build finished in 918ms
+Parsing file (1/2) C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '691acb6' }
+    entryTable.length 860
+    { startOfFirstString: '6914d48' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/shell.js due to 
+            ./devtools-frontend/front_end/sdk/DebuggerModel.js.mutated
+            ./devtools-frontend/front_end/sdk/RuntimeModel.js.mutated
+            ./devtools-frontend/front_end/sources/module.json.mutated
+        Length change from 168247 (168247) to 196960
+    Changed raw file ./devtools-frontend/front_end/sdk/DebuggerModel.js
+        Length change from 29542 (29542) to 49445
+    Changed raw file ./devtools-frontend/front_end/sdk/RuntimeModel.js
+        Length change from 14933 (14933) to 87029
+    Changed ./devtools-frontend/release/sources/sources_module.js due to 
+            ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js.mutated
+            ./devtools-frontend/front_end/sources/SourcesPanel.js.mutated
+        Length change from 23810 (23810) to 327969
+    Changed raw file ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js
+        Length change from 4769 (4769) to 35113
+    Changed raw file ./devtools-frontend/front_end/sources/SourcesPanel.js
+        Length change from 29680 (29680) to 46435
+    Updated file C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    Parse finished in 403ms
+
+Parsing file (2/2) C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '650409b' }
+    entryTable.length 590
+    { startOfFirstString: '6500228' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/shell.js due to 
+            ./devtools-frontend/front_end/sdk/DebuggerModel.js.mutated
+            ./devtools-frontend/front_end/sdk/RuntimeModel.js.mutated
+            ./devtools-frontend/front_end/sources/module.json.mutated
+        Length change from 195504 (195504) to 196960
+    Changed raw file ./devtools-frontend/front_end/sdk/DebuggerModel.js
+        Length change from 28693 (28693) to 49445
+    Changed raw file ./devtools-frontend/front_end/sdk/RuntimeModel.js
+        Length change from 14539 (14539) to 87029
+    Changed ./devtools-frontend/release/sources/sources_module.js due to 
+            ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js.mutated
+            ./devtools-frontend/front_end/sources/SourcesPanel.js.mutated
+        Length change from 308153 (308153) to 327969
+    Still erroring when writing to resources.pak.
+    Parse finished in 385ms
+
+
+Triggering rebuild because of changes in lighthouse\locales, lighthouse, imagePreview.css
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py shell --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py devtools_app --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+build finished in 1021ms
+Parsing file (1/2) C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '691acb6' }
+    entryTable.length 860
+    { startOfFirstString: '6914d48' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/shell.js due to 
+            ./devtools-frontend/front_end/components/imagePreview.css.mutated
+            ./devtools-frontend/front_end/sdk/DebuggerModel.js.mutated
+            ./devtools-frontend/front_end/sdk/RuntimeModel.js.mutated
+            ./devtools-frontend/front_end/sources/module.json.mutated
+        Length change from 168247 (168247) to 196960
+    Changed raw file ./devtools-frontend/front_end/sdk/DebuggerModel.js
+        Length change from 29542 (29542) to 49445
+    Changed raw file ./devtools-frontend/front_end/sdk/RuntimeModel.js
+        Length change from 14933 (14933) to 87029
+    Changed ./devtools-frontend/release/sources/sources_module.js due to 
+            ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js.mutated
+            ./devtools-frontend/front_end/sources/SourcesPanel.js.mutated
+        Length change from 23810 (23810) to 327969
+    Changed raw file ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js
+        Length change from 4769 (4769) to 35113
+    Changed raw file ./devtools-frontend/front_end/sources/SourcesPanel.js
+        Length change from 29680 (29680) to 46435
+    Updated file C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    Parse finished in 417ms
+
+Parsing file (2/2) C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '650409b' }
+    entryTable.length 590
+    { startOfFirstString: '6500228' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/shell.js due to 
+            ./devtools-frontend/front_end/components/imagePreview.css.mutated
+            ./devtools-frontend/front_end/sdk/DebuggerModel.js.mutated
+            ./devtools-frontend/front_end/sdk/RuntimeModel.js.mutated
+            ./devtools-frontend/front_end/sources/module.json.mutated
+        Length change from 195504 (195504) to 196960
+    Changed raw file ./devtools-frontend/front_end/sdk/DebuggerModel.js
+        Length change from 28693 (28693) to 49445
+    Changed raw file ./devtools-frontend/front_end/sdk/RuntimeModel.js
+        Length change from 14539 (14539) to 87029
+    Changed ./devtools-frontend/release/sources/sources_module.js due to 
+            ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js.mutated
+            ./devtools-frontend/front_end/sources/SourcesPanel.js.mutated
+        Length change from 308153 (308153) to 327969
+    Still erroring when writing to resources.pak.
+    Parse finished in 334ms
+
+
+Triggering rebuild because of changes in extensions.js
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py shell --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py devtools_app --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+build finished in 874ms
+Parsing file (1/2) C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '691acb6' }
+    entryTable.length 860
+    { startOfFirstString: '6914d48' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/shell.js due to 
+            ./devtools-frontend/front_end/components/imagePreview.css.mutated
+            ./devtools-frontend/front_end/extensions/extensions.js.mutated
+            ./devtools-frontend/front_end/sdk/DebuggerModel.js.mutated
+            ./devtools-frontend/front_end/sdk/RuntimeModel.js.mutated
+            ./devtools-frontend/front_end/sources/module.json.mutated
+        Length change from 168247 (168247) to 196960
+    Changed raw file ./devtools-frontend/front_end/extensions/extensions.js
+        Length change from 357 (357) to 523
+    Changed raw file ./devtools-frontend/front_end/sdk/DebuggerModel.js
+        Length change from 29542 (29542) to 49445
+    Changed raw file ./devtools-frontend/front_end/sdk/RuntimeModel.js
+        Length change from 14933 (14933) to 87029
+    Changed ./devtools-frontend/release/sources/sources_module.js due to 
+            ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js.mutated
+            ./devtools-frontend/front_end/sources/SourcesPanel.js.mutated
+        Length change from 23810 (23810) to 327969
+    Changed raw file ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js
+        Length change from 4769 (4769) to 35113
+    Changed raw file ./devtools-frontend/front_end/sources/SourcesPanel.js
+        Length change from 29680 (29680) to 46435
+    Updated file C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    Parse finished in 366ms
+
+Parsing file (2/2) C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '650409b' }
+    entryTable.length 590
+    { startOfFirstString: '6500228' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/shell.js due to 
+            ./devtools-frontend/front_end/components/imagePreview.css.mutated
+            ./devtools-frontend/front_end/extensions/extensions.js.mutated
+            ./devtools-frontend/front_end/sdk/DebuggerModel.js.mutated
+            ./devtools-frontend/front_end/sdk/RuntimeModel.js.mutated
+            ./devtools-frontend/front_end/sources/module.json.mutated
+        Length change from 195504 (195504) to 196960
+    Changed raw file ./devtools-frontend/front_end/extensions/extensions.js
+        Length change from 323 (323) to 523
+    Changed raw file ./devtools-frontend/front_end/sdk/DebuggerModel.js
+        Length change from 28693 (28693) to 49445
+    Changed raw file ./devtools-frontend/front_end/sdk/RuntimeModel.js
+        Length change from 14539 (14539) to 87029
+    Changed ./devtools-frontend/release/sources/sources_module.js due to 
+            ./devtools-frontend/front_end/sources/ScopeChainSidebarPane.js.mutated
+            ./devtools-frontend/front_end/sources/SourcesPanel.js.mutated
+        Length change from 308153 (308153) to 327969
+    Still erroring when writing to resources.pak.
+    Parse finished in 269ms
+
+
+Triggering rebuild because of changes in module.json, requestHeadersView.css, requestInitiatorView.css
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py shell --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py devtools_app --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+build finished in 1662ms
+Parsing file (1/2) C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '691acb6' }
+    entryTable.length 860
+    { startOfFirstString: '6914d48' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 36997 (36997) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 326ms
+
+Parsing file (2/2) C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '650409b' }
+    entryTable.length 590
+    { startOfFirstString: '6500228' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 277018 (277018) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 313ms
+
+
+Triggering rebuild because of changes in customPreviewComponent.css, GCActionDelegate.js
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py shell --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py devtools_app --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+build finished in 982ms
+Parsing file (1/2) C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '691acb6' }
+    entryTable.length 860
+    { startOfFirstString: '6914d48' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 36997 (36997) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 222ms
+
+Parsing file (2/2) C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '650409b' }
+    entryTable.length 590
+    { startOfFirstString: '6500228' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 277018 (277018) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 212ms
+
+
+Triggering rebuild because of changes in module.json
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py shell --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py devtools_app --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+build finished in 1242ms
+Parsing file (1/2) C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '691acb6' }
+    entryTable.length 860
+    { startOfFirstString: '6914d48' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 36997 (36997) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 218ms
+
+Parsing file (2/2) C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '650409b' }
+    entryTable.length 590
+    { startOfFirstString: '6500228' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 277018 (277018) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 290ms
+
+
+Triggering rebuild because of changes in quick_open.js
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py shell --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py devtools_app --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+build finished in 968ms
+Parsing file (1/2) C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '691acb6' }
+    entryTable.length 860
+    { startOfFirstString: '6914d48' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 36997 (36997) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 341ms
+
+Parsing file (2/2) C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '650409b' }
+    entryTable.length 590
+    { startOfFirstString: '6500228' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 277018 (277018) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 265ms
+
+
+Triggering rebuild because of changes in module.json
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py shell --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py devtools_app --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+build finished in 951ms
+Parsing file (1/2) C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '691acb6' }
+    entryTable.length 860
+    { startOfFirstString: '6914d48' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/devtools_app.js due to 
+            ./devtools-frontend/front_end/security/module.json.mutated
+        Length change from 81593 (81593) to 196390
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 36997 (36997) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 267ms
+
+Parsing file (2/2) C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '650409b' }
+    entryTable.length 590
+    { startOfFirstString: '6500228' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/devtools_app.js due to 
+            ./devtools-frontend/front_end/security/module.json.mutated
+        Length change from 196390 (196390) to 196390
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 277018 (277018) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 277ms
+
+
+Triggering rebuild because of changes in imageView.css
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py shell --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py devtools_app --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+build finished in 1039ms
+Parsing file (1/2) C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '691acb6' }
+    entryTable.length 860
+    { startOfFirstString: '6914d48' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/devtools_app.js due to 
+            ./devtools-frontend/front_end/security/module.json.mutated
+        Length change from 81593 (81593) to 196390
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 36997 (36997) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 225ms
+
+Parsing file (2/2) C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '650409b' }
+    entryTable.length 590
+    { startOfFirstString: '6500228' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/devtools_app.js due to 
+            ./devtools-frontend/front_end/security/module.json.mutated
+        Length change from 196390 (196390) to 196390
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 277018 (277018) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 220ms
+
+
+Triggering rebuild because of changes in ActionDelegate.js
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py shell --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py devtools_app --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+build finished in 937ms
+Parsing file (1/2) C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '691acb6' }
+    entryTable.length 860
+    { startOfFirstString: '6914d48' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/devtools_app.js due to 
+            ./devtools-frontend/front_end/security/module.json.mutated
+        Length change from 81593 (81593) to 196390
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 36997 (36997) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 277ms
+
+Parsing file (2/2) C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '650409b' }
+    entryTable.length 590
+    { startOfFirstString: '6500228' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/devtools_app.js due to 
+            ./devtools-frontend/front_end/security/module.json.mutated
+        Length change from 196390 (196390) to 196390
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 277018 (277018) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 195ms
+
+
+Triggering rebuild because of changes in softDropDown.css
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py shell --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+py ./devtools-frontend/front_end//../scripts/build/build_release_applications.py devtools_app --input_path ./devtools-frontend/front_end/ --output_path ./devtools-frontend/release/
+build finished in 884ms
+Parsing file (1/2) C:/Users/quent/AppData/Local/Google/Chrome SxS/Application/82.0.4065.1/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '691acb6' }
+    entryTable.length 860
+    { startOfFirstString: '6914d48' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/devtools_app.js due to 
+            ./devtools-frontend/front_end/security/module.json.mutated
+        Length change from 81593 (81593) to 196390
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 36997 (36997) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 234ms
+
+Parsing file (2/2) C:/Program Files (x86)/Google/Chrome/Application/80.0.3987.116/resources.pak
+    { intSize: 8 }
+    { endOfLastString: '650409b' }
+    entryTable.length 590
+    { startOfFirstString: '6500228' }
+    1058 / 1061 (99.7%) files from dll matched in repo.
+    Changed ./devtools-frontend/release/devtools_app.js due to 
+            ./devtools-frontend/front_end/security/module.json.mutated
+        Length change from 196390 (196390) to 196390
+    Changed ./devtools-frontend/release/network/network_module.js due to 
+            ./devtools-frontend/front_end/network/requestHeadersView.css.mutated
+            ./devtools-frontend/front_end/network/requestInitiatorView.css.mutated
+        Length change from 277018 (277018) to 276990
+    Error when generating new resource pak Error: ENOENT: no such file or directory, open './devtools-frontend/release/node_app.js'
+        at Object.openSync (fs.js:447:3)
+        at Object.readFileSync (fs.js:349:35)
+        at generateNewPak (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:787:36)
+        at Parse (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:670:30)
+        at runTimed (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:873:5)
+        at Timeout.triggerInner [as _onTimeout] (C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js:659:13)
+        at listOnTimeout (internal/timers.js:531:17)
+        at processTimers (internal/timers.js:475:7)
+    Parse finished in 314ms
+

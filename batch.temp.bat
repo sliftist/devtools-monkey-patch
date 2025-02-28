@@ -1,0 +1,2 @@
+cd C:\Users\quent\Dropbox\repos\devtools-monkey-patch
+C:\node.12.8.0\node.exe C:\Users\quent\Dropbox\repos\devtools-monkey-patch\deploy.js --optionsPath C:/Users/quent/Dropbox/repos/devtools-monkey-patch/options.txt.temp >> C:/Users/quent/Dropbox/repos/devtools-monkey-patch/log.txt.temp 2>&1
